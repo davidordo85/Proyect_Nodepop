@@ -1,16 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-const { query, validationResult } = require('express-validator');
+const { query, param, validationResult } = require('express-validator');
 
 /* GET home page. */
 router.get('/', function (req, res) {
-  res.locals.ejemplo = 'esto es un ejemplo';
   res.render('index', { title: 'Nodepop' });
 
 });
 
-
+/*
 // GET /parametroenruta/*
 router.get('/parametroenruta/:dato', (req, res, next) => {
   const dato = req.params.dato;
@@ -54,5 +53,7 @@ router.post('/enelbody', (req, res, next) => {
   console.log('Cabecera', req.get('Content-type'));
   res.send('He recibido el dato:' + req.body.numero);
 })
+
+*/
 
 module.exports = router;

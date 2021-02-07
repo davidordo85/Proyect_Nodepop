@@ -8,9 +8,13 @@ const Anuncio = require('../../models/Anuncio.js')
 router.get('/', async function (req, res, next) {
     try {
         // para recogerlo por nombre
-        const name = req.query.nombre;
+        const name = req.query.name;
         // para recogerlo por tags
         const tags = req.query.tags;
+
+        // para recogerlo si se vende
+        const sale = req.query.sale;
+
         // para paginar
         const limit = parseInt(req.query.limit);
         const skip = parseInt(req.query.skip);
@@ -23,6 +27,10 @@ router.get('/', async function (req, res, next) {
 
         if (tags) {
             filtro.tags = tags
+        }
+
+        if (sale) {
+            filtro.sale = sale
         }
 
         const result = await Anuncio.list(filtro, limit, skip);
@@ -47,6 +55,9 @@ router.get('/:id', async (req, res, next) => {
         next(err);
     }
 })
+
+// GET /api/anuncio:tags
+// Obtener anuncios si 
 
 // POST /api/anuncios (body)
 router.post('/', async (req, res, next) => {

@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const anuncioSchema = mongoose.Schema({
     name: { type: String, index: true },
-    sale: Boolean,
+    sale: { type: Boolean, index: true },
     price: { type: Number, index: true },
     image: String,
     tags: { type: [String], index: true }
