@@ -6,7 +6,7 @@ const { query, validationResult } = require('express-validator');
 /* GET home page. */
 router.get('/', function (req, res) {
   res.locals.ejemplo = 'esto es un ejemplo';
-  res.render('index');
+  res.render('index', { title: 'Nodepop' });
 
 });
 

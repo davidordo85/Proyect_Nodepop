@@ -14,7 +14,8 @@ mongoose.connection.once('open', () => {
 
 mongoose.connect('mongodb://localhost/cursonode', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
 
 module.exports = mongoose.connection;
