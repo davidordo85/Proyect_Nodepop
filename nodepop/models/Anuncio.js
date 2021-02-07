@@ -9,7 +9,7 @@ const anuncioSchema = mongoose.Schema({
     sale: Boolean,
     price: { type: Number, index: true },
     image: String,
-    tags: [String]
+    tags: { type: [String], index: true }
 }, {
     collection: 'anuncios'
 });
@@ -23,4 +23,6 @@ anuncioSchema.statics.list = function (filtro, limit, skip) {
 
 
 const Anuncio = mongoose.model('Anuncio', anuncioSchema)
+
+
 module.exports = Anuncio;

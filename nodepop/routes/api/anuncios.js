@@ -9,6 +9,8 @@ router.get('/', async function (req, res, next) {
     try {
         // para recogerlo por nombre
         const name = req.query.nombre;
+        // para recogerlo por tags
+        const tags = req.query.tags;
         // para paginar
         const limit = parseInt(req.query.limit);
         const skip = parseInt(req.query.skip);
@@ -17,6 +19,10 @@ router.get('/', async function (req, res, next) {
 
         if (name) {
             filtro.name = name
+        }
+
+        if (tags) {
+            filtro.tags = tags
         }
 
         const result = await Anuncio.list(filtro, limit, skip);
@@ -37,6 +43,20 @@ router.get('/:id', async (req, res, next) => {
             return res.status(404).json({ error: 'not found' });
         }
         res.json({ result: anuncio });
+    } catch (err) {
+        next(err);
+    }
+})
+
+// POST /api/anuncios (body)
+router.post('/', async (req, res, next) => {
+    try {
+        const anuncioData = req.body;
+        const anuncio = new Anuncio(anuncioData);
+
+        const anuncioCreated = await anuncio.save();
+
+        res.status(201).json({ result: anuncioCreated });
     } catch (err) {
         next(err);
     }
